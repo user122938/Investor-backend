@@ -1,2 +1,0 @@
-# Investor-backend
-Investor-backend

@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: always
+    ports:
+      - "3307:3306"  # 호스트와 컨테이너의 포트 매핑 (필요에 따라 조정)
+    environment:
+      MYSQL_ROOT_PASSWORD: qwe1234         # 루트 비밀번호
+      MYSQL_DATABASE: aivestordb
+    volumes:
+      - mysql_data:/var/lib/mysql           # 데이터 지속성을 위한 볼륨
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+volumes:
+  mysql_data:
